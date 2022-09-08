@@ -5,6 +5,7 @@ from dfsWithDepth import DFSWithDepth
 from dfsIterativeDepth import DFSIterativeDepth
 from bidirectionalSearch import BidirectionalSearch
 from firstBestMatch import FirstBestMatch
+from minimizingTotalScore import MinimizingTotalScore
 from graph import Graph
 from pprint import pprint
 import sys
@@ -16,7 +17,8 @@ METHODS = [
     DFSWithDepth,
     DFSIterativeDepth,
     BidirectionalSearch,
-    FirstBestMatch
+    FirstBestMatch,
+    MinimizingTotalScore
 ]
 
 
