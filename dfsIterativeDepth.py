@@ -15,7 +15,7 @@ class DFSIterativeDepth(ABCClass):
         for depth in range(1, self.max_depth + 1):
             self.dfs_with_depth(start_idx, depth)
             self.draw_graph('DFS with depth = {}'.format(depth))
-            print('depth({}): {}'.format(depth, self.dist[end_idx]))
+            self.save_graph('DFS with depth = {}'.format(depth))
             self.set_default(start, end)
         path = self.build_path(end_idx)
         return list(map(lambda x: self.idx_to_city[x], path))
@@ -45,19 +45,3 @@ class DFSIterativeDepth(ABCClass):
 
     def get_method(self):
         return 'DFS with iterative depth'
-
-    def draw_graph(self, title):
-        edges, colors = zip(*nx.get_edge_attributes(self.G, 'color').items())
-        ax = plt.gca()
-        ax.set_title(title)
-        nx.draw_circular(
-            self.G,
-            edgelist=edges,
-            edge_color=colors,
-            node_color='cyan',
-            node_size=500,
-            with_labels=True,
-            ax=ax
-        )
-
-        plt.show()

@@ -15,7 +15,8 @@ class DFSWithDepth(ABCClass):
         self.depth_assessment(start_idx)
         self.dfs_with_depth(start_idx, self.max_depth)
         path = self.build_path(end_idx)
-        self.draw_graph()
+        self.draw_graph(self.get_method())
+        self.save_graph(self.get_method())
         return list(map(lambda x: self.idx_to_city[x], path))
 
     def depth_assessment(self, node, depth=1):

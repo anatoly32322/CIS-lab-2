@@ -28,7 +28,8 @@ class BFS(ABCClass):
                     )
                     self.increment_color(1)
         path = self.build_path(end_idx)
-        self.draw_graph()
+        self.draw_graph(self.get_method())
+        self.save_graph(self.get_method())
         return list(map(lambda x: self.idx_to_city[x], path))
 
     def get_method(self) -> str:

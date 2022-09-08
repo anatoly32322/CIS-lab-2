@@ -49,17 +49,24 @@ class ABCClass(ABC):
         # self.green_value += 2 if self.red_value >= 255 and self.green_value < 155 else 0
         # self.blue_value += 2 if self.red_value >= 255 and self.green_value >= 155 and self.blue_value < 155 else 0
 
-    def draw_graph(self):
+    def draw_graph(self, title):
         edges, colors = zip(*nx.get_edge_attributes(self.G, 'color').items())
+        ax = plt.gca()
+        ax.set_title(title)
         nx.draw_circular(
             self.G,
             edgelist=edges,
             edge_color=colors,
             node_color='cyan',
             node_size=500,
-            with_labels=True
+            with_labels=True,
+            ax=ax
         )
-        plt.show()
+
+    @staticmethod
+    def save_graph(filename):
+        plt.savefig('./graphs/{}'.format(filename))
+        plt.close()
 
     @abstractmethod
     def find_shortest_path(self, start, end):

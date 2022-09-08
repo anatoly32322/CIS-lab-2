@@ -10,7 +10,8 @@ class DFS(ABCClass):
         start_idx, end_idx = self.set_default(start, end)
         self.dfs(start_idx)
         path = self.build_path(end_idx)
-        self.draw_graph()
+        self.draw_graph(self.get_method())
+        self.save_graph(self.get_method())
         return list(map(lambda x: self.idx_to_city[x], path))
 
     def dfs(self, idx: int):
