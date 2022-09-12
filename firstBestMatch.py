@@ -19,6 +19,7 @@ class FirstBestMatch(ABCClass):
         self.first_best_match_dfs(start_idx)
         self.draw_graph(self.get_method())
         self.save_graph(self.get_method())
+        print('{}: {}'.format(self.get_method(), self.iteration_counter))
         return self.path
 
     def first_best_match_dfs(self, node):
@@ -29,6 +30,7 @@ class FirstBestMatch(ABCClass):
             return
         node_arr = []
         self.used[node] = 1
+        self.increment_iter_cnt()
         for city_idx, distance in self.adj_matrix[node]:
             if not self.used[city_idx]:
                 node_arr.append((city_idx, distance))
@@ -40,7 +42,7 @@ class FirstBestMatch(ABCClass):
                 self.idx_to_city[city_idx],
                 color=rgb_to_hex((self.red_value, self.green_value, self.blue_value))
             )
-            self.increment_color(10)
+            self.increment_color(1)
             self.first_best_match_dfs(city_idx)
             if self.flag:
                 break

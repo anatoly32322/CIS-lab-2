@@ -12,9 +12,11 @@ class DFS(ABCClass):
         path = self.build_path(end_idx)
         self.draw_graph(self.get_method())
         self.save_graph(self.get_method())
+        print('{}: {}'.format(self.get_method(), self.iteration_counter))
         return list(map(lambda x: self.idx_to_city[x], path))
 
     def dfs(self, node: int):
+        self.increment_iter_cnt()
         for city_idx, distance in self.adj_matrix[node]:
             if self.dist[city_idx] > distance + self.dist[node]:
                 self.dist[city_idx] = distance + self.dist[node]

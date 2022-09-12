@@ -16,6 +16,7 @@ class ABCClass(ABC):
     red_value: int = 30
     blue_value: int = 30
     green_value: int = 30
+    iteration_counter: int = 0
 
     def __init__(self, adj_matrix: List, city_to_idx: Dict, idx_to_city: Dict):
         self.adj_matrix = adj_matrix.copy()
@@ -33,7 +34,11 @@ class ABCClass(ABC):
         self.red_value = 30
         self.green_value = 30
         self.blue_value = 30
+        self.iteration_counter = 0
         return start_idx, end_idx
+
+    def increment_iter_cnt(self):
+        self.iteration_counter += 1
 
     def build_path(self, start_idx) -> List:
         path = []

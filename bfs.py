@@ -15,6 +15,7 @@ class BFS(ABCClass):
         k.append(start_idx)
         while len(k) != 0:
             node = k.popleft()
+            self.increment_iter_cnt()
             for city_idx, distance in self.adj_matrix[node]:
                 if self.dist[city_idx] > self.dist[node] + distance:
                     self.dist[city_idx] = self.dist[node] + distance
@@ -30,6 +31,7 @@ class BFS(ABCClass):
         path = self.build_path(end_idx)
         self.draw_graph(self.get_method())
         self.save_graph(self.get_method())
+        print('{}: {}'.format(self.get_method(), self.iteration_counter))
         return list(map(lambda x: self.idx_to_city[x], path))
 
     def get_method(self) -> str:

@@ -15,6 +15,7 @@ class BidirectionalSearch(ABCClass):
         flag = False
         while len(k) != 0 and not flag:
             node, is_reversed = k.popleft()
+            self.increment_iter_cnt()
             for city_idx, distance in self.adj_matrix[node]:
                 if not self.used[city_idx]:
                     self.used[city_idx] = 1 if is_reversed else 2
@@ -39,6 +40,7 @@ class BidirectionalSearch(ABCClass):
                     break
         self.draw_graph(self.get_method())
         self.save_graph(self.get_method())
+        print('{}: {}'.format(self.get_method(), self.iteration_counter))
         return ''
 
     def get_method(self):

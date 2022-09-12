@@ -17,8 +17,9 @@ class MinimizingTotalScore(ABCClass):
         path = [end]
         while True:
             node = k.popleft()
+            self.increment_iter_cnt()
             best_node = (node, self.dist[node])
-            for city_idx, _ in self.adj_matrix[node]:
+            for city_idx, distance in self.adj_matrix[node]:
                 if best_node[1] > self.dist[city_idx]:
                     best_node = (city_idx, self.dist[city_idx])
             if best_node[0] == node:
@@ -33,6 +34,7 @@ class MinimizingTotalScore(ABCClass):
             path.append(self.idx_to_city[best_node[0]])
         self.draw_graph(self.get_method())
         self.save_graph(self.get_method())
+        print('{}: {}'.format(self.get_method(), self.iteration_counter))
         return path
 
     def pre_calculate_dist(self, start_idx):

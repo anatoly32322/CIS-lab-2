@@ -1,4 +1,3 @@
-from typing import List
 from bfs import BFS
 from dfs import DFS
 from dfsWithDepth import DFSWithDepth
@@ -6,8 +5,6 @@ from dfsIterativeDepth import DFSIterativeDepth
 from bidirectionalSearch import BidirectionalSearch
 from firstBestMatch import FirstBestMatch
 from minimizingTotalScore import MinimizingTotalScore
-from graph import Graph
-from pprint import pprint
 import sys
 
 
@@ -26,8 +23,7 @@ def main(path):
     adj_matrix, city_to_idx_map, idx_to_city_map = read_file(path)
     for method in METHODS:
         solver = method(adj_matrix, city_to_idx_map, idx_to_city_map)
-        print(solver.get_method())
-        pprint(solver.find_shortest_path('Вильнюс', 'Одесса'))
+        solver.find_shortest_path('Вильнюс', 'Одесса')
 
 
 def read_file(path):

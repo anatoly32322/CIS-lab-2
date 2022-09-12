@@ -16,6 +16,7 @@ class DFSIterativeDepth(ABCClass):
             self.dfs_with_depth(start_idx, depth)
             self.draw_graph('DFS with depth = {}'.format(depth))
             self.save_graph('DFS with depth = {}'.format(depth))
+            print('{} = {}: {}'.format(self.get_method(), depth, self.iteration_counter))
             self.set_default(start, end)
         path = self.build_path(end_idx)
         return list(map(lambda x: self.idx_to_city[x], path))
@@ -30,6 +31,7 @@ class DFSIterativeDepth(ABCClass):
     def dfs_with_depth(self, node, depth):
         if depth <= 0:
             return
+        self.increment_iter_cnt()
         for city_idx, distance in self.adj_matrix[node]:
             if self.dist[city_idx] > self.dist[node] + distance:
                 self.dist[city_idx] = self.dist[node] + distance
